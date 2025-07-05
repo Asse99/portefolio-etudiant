@@ -1,0 +1,7 @@
+{
+    "name": "vendor/projetphp",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
+}

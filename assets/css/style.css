@@ -1,0 +1,838 @@
+/* ===================================================
+🎯 RÉINITIALISATION & BASE
+=================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2f5f9;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* ===================================================
+  🧭 TITRES ET LIENS
+  =================================================== */
+h3 {
+    color: #0066cc;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 25px;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a[href*="supprimer_"] {
+    color: crimson !important;
+    font-weight: bold;
+}
+a[href*="modifier_"] {
+    color: #0066cc !important;
+    font-weight: bold;
+}
+
+
+/* ===================================================
+  🔐 MAIN CONTAINER
+  =================================================== */
+main.contenu {
+    margin-left: 250px;
+    padding: 35px;
+}
+
+@media (max-width: 992px) {
+    main.contenu {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+/* ===================================================
+  📁 SIDEBAR
+  =================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #0066cc;
+    color: white;
+    padding: 10px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sidebar h1 {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.sidebar a {
+    color: white;
+    font-size: 1.3em;
+    display: block;
+    padding: 6px 1px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #033c75;
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -260px;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+}
+
+
+
+/* ===================================================
+  📱 MENU BURGER
+  =================================================== */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 2000;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* ===================================================
+  🔓 DÉCONNEXION
+  =================================================== */
+.logout-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logout-container a {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-container a:hover {
+    background-color: #d32f2f;
+}
+
+/* ===================================================
+👤 CARTES PROFIL
+=================================================== */
+.carte-profil {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    width: 100%;
+}
+
+.carte-profil img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0066cc;
+    margin-right: 20px;
+}
+
+.infos-profil {
+    flex: 1;
+    text-align: left;
+}
+
+.infos-profil h3 {
+    margin-bottom: 5px;
+    color: #0066cc;
+}
+
+.modifier-photo {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #444;
+    text-decoration: underline;
+}
+
+.modifier-photo:hover {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .carte-profil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .carte-profil img {
+        margin: 0 auto 12px;
+    }
+
+    .infos-profil {
+        text-align: center;
+    }
+}
+
+/* Carte profil d’accueil */
+.carte-profil.accueil {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.carte-profil.accueil img {
+    width: 90px;
+    height: 90px;
+}
+
+/* ===================================================
+  🧾 FORMULAIRES
+  =================================================== */
+form,
+.formulaire-auth,
+.formulaire-ajout {
+    max-width: 500px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+input,
+textarea,
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* ===================================================
+  ✅ MESSAGES
+  =================================================== */
+.message-succes,
+.message-erreur {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.message-succes {
+    background-color: #e0f4e9;
+    border: 1px solid #3ac47d;
+    color: #237b4b;
+}
+
+.message-erreur {
+    background-color: #fdecea;
+    border: 1px solid #e53935;
+    color: #b71c1c;
+}
+
+/* ===================================================
+  🎓 BLOC DIPLÔMES
+  =================================================== */
+.bloc-diplomes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.bloc-diplomes ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.bloc-diplomes li {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+section ul {
+    text-align: left;
+    margin: 0 auto;
+    padding-left: 20px;
+    max-width: 800px;
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
+/* ===================================================
+  🧭 BOUTONS ACCUEIL (connexion / inscription)
+  =================================================== */
+.boutons-accueil {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.btn-principal,
+.btn-secondaire {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-principal {
+    background-color: #0066cc;
+    color: white;
+}
+
+.btn-principal:hover {
+    background-color: #005bb5;
+}
+
+.btn-secondaire {
+    background-color: white;
+    border: 2px solid #0066cc;
+    color: #0066cc;
+}
+
+.btn-secondaire:hover {
+    background-color: #f0f7ff;
+}
+
+@media (max-width: 480px) {
+    .boutons-accueil {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ===================================================
+🎠 CARROUSEL DE PROJETS
+=================================================== */
+.carousel-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    min-width: max-content;
+    scroll-behavior: smooth;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+/* ===================================================
+  🗂️ CARTES PROJETS
+  =================================================== */
+.carte-projet {
+    flex: 0 0 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+    max-height: 380px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    white-space: normal;
+    overflow: hidden;
+}
+
+.carte-projet img {
+    width: 100%;
+    max-height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.carte-projet p {
+    overflow-wrap: break-word;
+    height: 80px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+    .carte-projet {
+        width: 90vw;
+        height: auto;
+    }
+}
+
+/* ===================================================
+  💼 ACTIONS PROJET (modif / suppr)
+  =================================================== */
+.actions-projet {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.actions-projet a {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #005aa7;
+}
+
+/* ===================================================
+🌍 STRUCTURE GÉNÉRALE
+=================================================== */
+
+
+/* ===================================================
+  🧾 ZONE DE TEXTE SCROLLABLE
+  =================================================== */
+.texte-scrollable {
+    max-height: 60px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    border-radius: 6px;
+}
+
+.texte-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.texte-scrollable::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 4px;
+}
+
+/* ===================================================
+  📌 STICKY HEADER
+  =================================================== */
+.entete {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.container-entete {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+/* ===================================================
+  🔗 MENU DE NAVIGATION (desktop)
+  =================================================== */
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.menu a:hover {
+    color: #007bff;
+}
+
+/* ===================================================
+  🍔 BOUTON BURGER (menu mobile)
+  =================================================== */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    background-color: #022950;
+    color: #fff;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 2000;
+    display: none;
+    width: 50px;
+}
+
+/* ===================================================
+  📱 RESPONSIVE GENERAL (≤768px et ≤480px)
+  =================================================== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #f8f9fa;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        z-index: 1001;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #0066cc;
+        z-index: 1500;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.active {
+        transform: translateX(0%);
+    }
+
+    .contenu {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+
+    .carte-profil {
+        flex-direction: column;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .carte-profil img {
+        margin-bottom: 12px;
+    }
+
+    .infos-profil {
+        text-align: center;
+    }
+
+    .formulaire-auth,
+    .formulaire-ajout,
+    .message-succes,
+    .message-erreur {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .carte-projet {
+        width: 90vw;
+        height: auto;
+    }
+
+    .boutons-accueil {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ===================================================
+  📊 AFFICHAGE GRILLE (blocs côte à côte)
+  =================================================== */
+.ligne-bloc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.bloc-colonne {
+    flex: 1 1 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 300px;
+}
+
+.bloc-colonne h3 {
+    margin-bottom: 15px;
+    color: #0066cc;
+    text-align: left;
+}
+
+.bloc-colonne ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.bloc-colonne li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* ===================================================
+🌓 THÈME CLAIR / SOMBRE
+=================================================== */
+:root {
+    --fond: #ffffff;
+    --texte: #222222;
+    --fond-secondaire: #f8f9fa;
+}
+
+body {
+    background-color: var(--fond);
+    color: var(--texte);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Bouton switch */
+.theme-toggle {
+    display: none;
+}
+
+.theme-label {
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 15px;
+}
+
+/* 🌙 Thème sombre */
+body.dark-mode {
+    --fond: #1f1f1f;
+    --texte: #f4f4f4;
+    --fond-secondaire: #2a2a2a;
+}
+
+.entete,
+.container-entete,
+.menu,
+
+.bloc-colonne {
+    background-color: var(--fond-secondaire);
+    color: var(--texte);
+}
+
+/* Section a propos -------------------------------------------------*/
+.section-a-propos {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.7;
+    background-color: var(--fond-secondaire);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-a-propos h2 {
+    margin-bottom: 20px;
+    color: #0066cc;
+}
+
+.citation {
+    font-style: italic;
+    text-align: center;
+    color: #555;
+    margin-top: 30px;
+    border-left: 4px solid #0066cc;
+    padding-left: 15px;
+}
+
+.timeline {
+    margin-top: 40px;
+    padding-left: 20px;
+    border-left: 3px solid #0066cc;
+}
+
+.timeline .etape {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.timeline .etape::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #0066cc;
+    border-radius: 50%;
+}
+
+.photo-profil {
+    display: block;
+    width: 140px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================================================
+  ✉️ SECTION CONTACT
+  =================================================== */
+
+.contact-section {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--fond-secondaire);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-section h2 {
+    color: #0066cc;
+    margin-bottom: 15px;
+}
+
+.formulaire-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formulaire-contact input,
+.formulaire-contact textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.formulaire-contact button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.formulaire-contact button:hover {
+    background-color: #004999;
+}
